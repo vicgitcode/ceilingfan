@@ -27,6 +27,9 @@ public class CeilingFan {
     private DirectionControl directionControl;
     ConcurrentLinkedQueue<UserInput> inputSignalQueue;
 
+    /**
+     * Initialize the CeilingFan and setup 4 different threads for Motor, Speed Control, Direction Control and User Input
+     */
     public CeilingFan() {
         this.motor = new CeilingFanMotor();
         this.speedControl = new CeilingFanSpeedControl(this.motor);
@@ -102,18 +105,32 @@ public class CeilingFan {
         userInputListenerThread.start();
     }
 
+    /**
+     * Implement a pull on the speed cord, which send a speed-change signal to the input signal channel
+     */
     public void pullSpeedCord() {
         this.inputSignalQueue.offer(CHANGE_SPEED);
     }
 
+    /**
+     * Implement a pull on the direction cord, which send a direction-change signal to the input signal channel
+     */
     public void pullDirectionCord() {
         this.inputSignalQueue.offer(CHANGE_DIRECTION);
     }
 
+    /**
+     * Return the current motor speed as fan speed
+     * @return the current fan speed
+     */
     public Speed getCurrentFanSpeed() {
         return this.motor.getCurrentSpeed();
     }
 
+    /**
+     * Return the current motor direction as fan direction
+     * @return the current fan direction
+     */
     public Direction getCurrentFanDirection() {
         return this.motor.getCurrentDirection();
     }
