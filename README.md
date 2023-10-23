@@ -12,7 +12,7 @@ In Java, implement a simple ceiling fan with these characteristics:
 Run CeilingFanRunner to initialize the Ceiling Fan. Enter 'S' for pulling Speed-change cord and/or 'D' for pulling Direction-change cord. Or 'SD' to pull both cords at the same time.
 
 ## Design and Implementation Decisions
-- Use Interfaces to achieve Abstractions for Motor and Speed/Direction Controls. This follows the Open-Close Principle (Open for extension, close for modification). So in the future the application could easily support other implementations of Motors or Controls.
+- Use Interfaces to achieve Abstractions for Motor and Speed/Direction Controls. This follows the Open-Close Principle (Open for extension, close for modification) and Dependency Inversion principle (Depend on abstractions, not concretions). So in the future the application could easily support other implementations of Motors or Controls.
 - Use Enums to store states for Speed and Direction. In its core, the Ceiling Fan is just a mini state-machine with finite states and well-defined transitions between different states.
 - Concurrent design for Motor, Speed cord, Direction cord and User Input, so that all of them can operate in non-blocking manner.
 - ConcurrentLinkedQueue is used as input signal channel to pass Speed-change or Direction-change signals from the controls to the motor.
